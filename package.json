@@ -1,0 +1,19 @@
+{
+  "name": "cli-login-app",
+  "version": "1.0.0",
+  "description": "This command-line interface (CLI) program allows you to create an account, log in, and manage your user account. App uses a RESTful API and a PostgreSQL database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bnjackson/cli-login-app.git"
+  },
+  "author": "Benjamin Jackson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bnjackson/cli-login-app/issues"
+  },
+  "homepage": "https://github.com/Bnjackson/cli-login-app#readme"
+}

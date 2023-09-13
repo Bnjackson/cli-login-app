@@ -44,8 +44,9 @@ async function checkUserInput(userInput) {
 }
 
 async function getUserChoice() {
+    //User choice refers to whether user wants to login or create a new account.
     const allowedChoices = ['login', 'register'];
-    const userChoice = getUserInput('Do you want to login to an existing account, or register a new account? login/register', 'string'); 
+    const userChoice = getUserInput('Do you want to login to an existing account, or create a new account? login/register', 'string'); 
     if (allowedChoices.includes(userChoice)) {
         return userChoice
     } else {
@@ -53,7 +54,7 @@ async function getUserChoice() {
     }
 }
 
-function getUserCommand() {
+async function getUserCommand() {
     const allowedCommands = ['get', 'put', 'delete'];
     const userCommand = getUserInput('Enter command');
     if (allowedCommands.includes(userCommand)) {
@@ -63,8 +64,18 @@ function getUserCommand() {
     }
 }
 
+async function getUserInfoChoice(message) {
+    //Prompts user for account info choice and returns choice to userCommands functions
+    const allowedInputs = ['all', 'username', 'password', 'first name', 'last name', 'age'];
+    //All refers to entire user information
+    console.log(message);
+    const userInput = readlineSync.question(`${allowedInputs} are your choices to input`).toLowerCase();
+    return allowedInputs.includes(userInput) ? userInput : getUserInfoChoice(message);
+}
+
 module.exports = {
     getUserInput,
     getUserChoice,
-    getUserCommand
+    getUserCommand,
+    getUserInfoChoice
 }

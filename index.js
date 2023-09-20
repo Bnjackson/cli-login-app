@@ -1,13 +1,17 @@
 'use strict';
 
-const serverModule = require('./server/app.js');
+const expressApp = require('./server/app.js');
 const inputModule = require('./utils/input.js');
 const loginModule = require('./commands/login.js');
 const registerModule = require('./commands/register.js');
 const userCommandsModule = require('./commands/userCommands.js');
 
+expressApp.listen(3000, () => {
+    console.log('Server Started');
+})
+
 console.log(`
-This program allows you to create an account or login to an existing account. 
+This program allows you to create an account or login to an existing account using a CLI. 
 All account details are stored in a postgreSQL database. 
 This program use a REST API to connect to the database, and allows for the user to request, change or delete their account details.
 `);
@@ -54,9 +58,9 @@ async function userCommands() {
         if (userCommand === 'get') {
             await userCommandsModule.getUserInfo();
         } else if (userCommand === 'put') {
-            await userCommandsModule.put();
+            await userCommandsModule.changeUserInfo();
         } else if (userCommand === 'delete') {
-            await userCommandsModule.delete();
+            await userCommandsModule.deleteUserInfo();
         }
         continueRunning() === 'true' ? anotherCommand = true: anotherCommand = false;
     };

@@ -11,7 +11,6 @@ async function getUserInfo() {
         console.table(response.data);
     } catch (error) {
         console.error(`Error calling get API endpoint ${error}`);
-        throw error;
     }
 }
 
@@ -23,7 +22,6 @@ async function changeUserInfo() {
         console.log(`Account information updated successfully`);
     } catch (error) {
         console.error(`Error calling PUT API endpoint ${error}`);
-        throw error;
     }
 }
 
@@ -40,13 +38,18 @@ function getUpdatedInfo(userInfoToChange) {
     }
 }
 
-async function deleteUserInformation() {
+async function deleteUserInfo() {
     const userInfoToChange = inputModule.getUserInfoChoice('Please enter the account info you would like to delete');
     try {
         await axios.delete(`${apiUrl}/api/delete:${userInfoToChange}`);
         console.log('Account information deleted successfully');
     } catch (error) {
         console.error(`Error calling DELETE API endpoint ${error}`);
-        throw error;
     }
+}
+
+module.exports = {
+    getUserInfo,
+    changeUserInfo,
+    deleteUserInfo
 }
